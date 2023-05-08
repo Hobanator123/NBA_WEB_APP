@@ -1,11 +1,20 @@
 from flask import Flask, render_template, url_for, request, redirect
 from nba_api.stats.static import players, teams
 from nba_api.stats.endpoints import playercareerstats
+import json
 
 app = Flask(__name__)
 
 all_players = players.get_players()
 all_teams = teams.get_teams()
+
+headers =  {
+    "host": "stats.nba.com",
+    "cache-control":"max-age=0",
+    "connection": "keep-alive",
+    "accept-encoding" : "Accepflate, sdch",
+    'accept-language':"he-IL,he;q=0.8,en-US;q=0.6,en;q=0.4",
+}
 
 @app.route("/")
 def home():
@@ -34,7 +43,7 @@ def player_search():
 @app.route("/player/<player_id>")
 def player(player_id):
     player_name = [p for p in all_players if p['id'] == int(player_id)][0]['full_name']
-    career = playercareerstats.PlayerCareerStats(player_id=player_id, timeout=100)
+    career = playercareerstats.PlayerCareerStats(player_id=player_id, headers=headers, timeout=20)
     player_info = career.get_data_frames()[0]
     return render_template("player.html", player_name=player_name, player_info=player_info)
 
