@@ -2,3 +2,4 @@ flask==2.2.0
 flask_sqlalchemy==3.0.2
 nba_api
 requests-futures
+pandas
