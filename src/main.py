@@ -34,7 +34,7 @@ def player_search():
 @app.route("/player/<player_id>")
 def player(player_id):
     player_name = [p for p in all_players if p['id'] == int(player_id)][0]['full_name']
-    career = playercareerstats.PlayerCareerStats(player_id=player_id)
+    career = playercareerstats.PlayerCareerStats(player_id=player_id, timeout=100)
     player_info = career.get_data_frames()[0]
     return render_template("player.html", player_name=player_name, player_info=player_info)
 
