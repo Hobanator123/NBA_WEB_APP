@@ -21,12 +21,12 @@
             </tr>
             {% for index, row in player_info.iterrows() %}
                 <tr>
-                    <td>{{ row["season"] }}</td>
-                    <td>{{ row["pts"] }}</td>
-                    <td>{{ row["reb"] }}</td>
-                    <td>{{ row["ast"] }}</td>
-                    <td>{{ row["stl"] }}</td>
-                    <td>{{ row["blk"] }}</td>
+                    <td>{{ row["SEASON_ID"] }}</td>
+                    <td>{{ row["PTS"] }}</td>
+                    <td>{{ row["REB"] }}</td>
+                    <td>{{ row["AST"] }}</td>
+                    <td>{{ row["STL"] }}</td>
+                    <td>{{ row["BLK"] }}</td>
                 </tr>
             {% endfor %}
         </table>
