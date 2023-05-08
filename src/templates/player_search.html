@@ -2,6 +2,14 @@
 
 {% block head %}
 <title>Player Search</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+</script>  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+</script>  
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+    rel="stylesheet" type="text/css" />  
 {% endblock %} 
 
 {% block body %}
@@ -11,12 +19,26 @@
 <main>
     <form action="/player/search" method="POST">
         <label for="player-name">Player Name:</label>
-        <input type="text" id="player-name" name="player-name"><br><br>
+        <input type="text" id="player-name" name="player-name", placeholder="e.g. Jayson Tatum"><br><br>
+
+        <script>
+            $( function() {
+                var availableTags = [
+                    {% for player in players %}
+                        "{{player}}",
+                    {% endfor %}
+                ];
+                $( "#player-name" ).autocomplete({
+                source: availableTags
+                });
+            } );
+        </script>
+
         <input type="submit" value="Submit">
     </form>
     {% if player_not_found %}
     <div style="text-align: center; color: red; font-weight: bold; margin-top: 1rem;">
-        Player doesn't seem to exist. Try checking the spelling.
+        Player doesn't exist or is no longer available. Try checking the spelling.
     </div>
     {% endif %}
 </main>

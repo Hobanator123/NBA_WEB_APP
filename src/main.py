@@ -1,12 +1,15 @@
 from flask import Flask, render_template, url_for, request, redirect
 from nba_api.stats.static import players, teams
 from nba_api.stats.endpoints import playercareerstats
+import json
 
 
 app = Flask(__name__)
 
 all_players = players.get_players()
+player_names = [player["full_name"] for player in all_players]
 all_teams = teams.get_teams()
+team_names = [team["full_name"] for team in all_teams]
 
 @app.route("/")
 def home():
@@ -29,15 +32,23 @@ def player_search():
         except:
             player_not_found = True
 
-    return render_template("player_search.html", player_not_found=player_not_found)            
+    return render_template("player_search.html", players=player_names, player_not_found=player_not_found)
 
     
 @app.route("/player/<player_id>")
 def player(player_id):
     player_name = [p for p in all_players if p['id'] == int(player_id)][0]['full_name']
-    career = playercareerstats.PlayerCareerStats(player_id=player_id, timeout=10)
-    player_info = career.get_data_frames()[0]
-    return render_template("player.html", player_name=player_name, player_info=player_info)
+    try:
+        career = playercareerstats.PlayerCareerStats(player_id=player_id, timeout=10)
+        player_info = career.get_data_frames()[0]
+        return render_template("player.html", player_name=player_name, player_info=player_info)
+    except json.decoder.JSONDecodeError:
+        return render_template("player_search.html", players=player_names, player_not_found=True)
+
+
+@app.route("/team/list", methods=["POST", "GET"])
+def team_list():
+    return render_template("team_list.html", all_teams=all_teams)
 
 
 @app.route("/team/search", methods=["POST", "GET"])
@@ -56,7 +67,7 @@ def team_search():
         except:
             team_not_found = True
 
-    return render_template("team_search.html", team_not_found=team_not_found)            
+    return render_template("team_search.html", teams=team_names, team_not_found=team_not_found)            
 
     
 @app.route("/team/<team_id>")

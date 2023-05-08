@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{% block head %}
+<title>NBA Teams</title>
+{% endblock %} 
+
+{% block body %}
+<header>
+    <h1 style="text-align: center;">All Teams</h1>
+</header>
+<main>
+    <div id="team-list">
+        <table>
+            {% for idx in range(0, all_teams|length, 3) %}
+                <tr>
+                    <td><a href="/team/{{ all_teams[idx]['id'] }}">{{ all_teams[idx]["full_name"] }}</a></td>
+                    <td>
+                        {% if idx + 1 < all_teams|length %}
+                            <a href="/team/{{ all_teams[idx + 1]['id'] }}">{{ all_teams[idx + 1]["full_name"] }}</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if idx + 2 < all_teams|length %}
+                            <a href="/team/{{ all_teams[idx + 2]['id'] }}">{{ all_teams[idx + 2]["full_name"] }}</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+{% endblock %} 

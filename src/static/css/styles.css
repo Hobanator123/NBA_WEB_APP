@@ -1,186 +1,192 @@
 /* Reset the default styles */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Set some global styles */
-  body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-  
-  p {
-    margin-bottom: 1rem;
-  }
-  
-  /* Style the header */
-  header {
-    background-color: #3f51b5;
-    color: white;
-    padding: 20px;
-  }
-  
-  header h1 {
-    font-size: 2em;
-    margin: 0;
-  }
-  
-  /* Style the form */
-  form {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  input[type="text"] {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 1.1em;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  input[type="submit"] {
-    background-color: #3f51b5;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #303f9f;
-  }
-  
-  /* Style the player information table */
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  
-  table th, table td {
-    padding: 0.5rem;
-    text-align: left;
-    vertical-align: top;
-    border: 1px solid #ccc;
-  }
-  
-  table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  /* Style the player name */
-  .player-name {
-    font-size: 2em;
-    margin-bottom: 1rem;
-  }
-
-  /* Style the team name */
-  .team-name {
-    font-size: 2em;
-    margin-bottom: 1rem;
-  }
-
-
-  /* Style the button container */
-.button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin: 2rem 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Style the search buttons */
-.search-button {
-  display: inline-block;
+/* Set some global styles */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Style the header */
+header {
   background-color: #3f51b5;
   color: white;
-  padding: 1rem 2rem;
+  padding: 20px;
+}
+
+header h1 {
+  font-size: 2em;
+  margin: 0;
+}
+
+/* Style the form */
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1.1em;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+input[type="submit"] {
+  background-color: #3f51b5;
+  color: white;
+  padding: 10px;
   border: none;
   border-radius: 5px;
   font-size: 1.1em;
+  margin-top: 10px;
   cursor: pointer;
-  text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
-.search-button:hover {
+input[type="submit"]:hover {
   background-color: #303f9f;
 }
-  
-/* Style the team information table */
-#team-info table {
+
+/* Style the player information table */
+table {
   border-collapse: collapse;
-  max-width: 500px;
   width: 100%;
-  margin: 2rem auto;
-  background-color: #f9f9f9;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
 }
 
-#team-info th, #team-info td {
-  padding: 1rem;
+table th, table td {
+  padding: 0.5rem;
   text-align: left;
   vertical-align: top;
   border: 1px solid #ccc;
 }
 
-#team-info th {
-  background-color: #3f51b5;
-  color: white;
+table th {
+  background-color: #f2f2f2;
   font-weight: bold;
-  text-align: right;
-  width: 40%;
+}
+
+/* Style the player name */
+.player-name {
+  font-size: 2em;
+  margin-bottom: 1rem;
+}
+
+/* Style the team name */
+.team-name {
+  font-size: 2em;
+  margin-bottom: 1rem;
+}
+
+
+/* Style the button container */
+.button-container {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 2rem;
+margin: 2rem 0;
+}
+
+/* Style the search buttons */
+.search-button {
+display: inline-block;
+background-color: #3f51b5;
+color: white;
+padding: 1rem 2rem;
+border: none;
+border-radius: 5px;
+font-size: 1.1em;
+cursor: pointer;
+text-decoration: none;
+transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+background-color: #303f9f;
+}
+
+/* Style the team information table */
+#team-info table {
+border-collapse: collapse;
+max-width: 500px;
+width: 100%;
+margin: 2rem auto;
+background-color: #f9f9f9;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+#team-info th, #team-info td {
+padding: 1rem;
+text-align: left;
+vertical-align: top;
+border: 1px solid #ccc;
+}
+
+#team-info th {
+background-color: #3f51b5;
+color: white;
+font-weight: bold;
+text-align: right;
+width: 40%;
 }
 
 #team-info td {
-  text-align: left;
+text-align: left;
 }
 
 /* Style the home button */
 .home-button {
-  display: inline-block;
-  background-color: #303f9f;
-  color: white;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  cursor: pointer;
-  text-decoration: none;
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  transition: background-color 0.3s ease;
+display: inline-block;
+background-color: #303f9f;
+color: white;
+padding: 0.5rem 1rem;
+border: none;
+border-radius: 5px;
+font-size: 1em;
+cursor: pointer;
+text-decoration: none;
+position: fixed;
+top: 10px;
+left: 10px;
+transition: background-color 0.3s ease;
 }
 
 .home-button:hover {
-  background-color: #1c2c91;
+background-color: #1c2c91;
+}
+
+.ui-autocomplete {
+  max-height: 180px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

@@ -2,6 +2,14 @@
 
 {% block head %}
 <title>Team Search</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+</script>  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+</script>  
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+    rel="stylesheet" type="text/css" />  
 {% endblock %} 
 
 {% block body %}
@@ -12,6 +20,20 @@
     <form action="/team/search" method="POST">
         <label for="team-name">Team Name:</label>
         <input type="text" id="team-name" name="team-name"><br><br>
+
+        <script>
+            $( function() {
+                var availableTags = [
+                    {% for team in teams %}
+                        "{{team}}",
+                    {% endfor %}
+                ];
+                $( "#team-name" ).autocomplete({
+                source: availableTags
+                });
+            } );
+        </script>
+
         <input type="submit" value="Submit">
     </form>
     {% if team_not_found %}
