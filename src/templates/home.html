@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{% block head %}
+<title>NBA Web App</title>
+{% endblock %}
+
+{% block body %}
+<header>
+    <h1 style="text-align: center;">Home Page</h1>
+</header>
+<main>
+    <div class="button-container">
+        <a href="/team/search" class="search-button">Search for Team</a>
+        <a href="/player/search" class="search-button">Search for Player</a>
+    </div>
+</main>
+{% endblock %}

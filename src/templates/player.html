@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{% block head %}
+<title>Player Information</title>
+{% endblock %} 
+
+{% block body %}
+<header>
+    <h1 style="text-align: center;">{{player_name}}</h1>
+</header>
+<main>
+    <div id="player-info">
+        <table>
+            <tr>
+                <th>Season</th>
+                <th>Points</th>
+                <th>Rebounds</th>
+                <th>Assists</th>
+                <th>Steals</th>
+                <th>Blocks</th>
+            </tr>
+            {% for index, row in player_info.iterrows() %}
+                <tr>
+                    <td>{{ row["SEASON_ID"] }}</td>
+                    <td>{{ row["PTS"] }}</td>
+                    <td>{{ row["REB"] }}</td>
+                    <td>{{ row["AST"] }}</td>
+                    <td>{{ row["STL"] }}</td>
+                    <td>{{ row["BLK"] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</main>
+{% endblock %} 

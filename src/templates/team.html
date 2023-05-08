@@ -1,0 +1,41 @@
+{%extends 'base.html'%}
+
+{% block head %}
+<title>Team Information</title>
+{% endblock %} 
+
+{% block body %}
+<header>
+    <h1 style="text-align: center;">{{team_info.full_name}}</h1>
+</header>
+<main>
+    <div id="team-info">
+        <table>
+            <tr>
+                <th>Team Name</th>
+                <td>{{ team_info.full_name }}</td>
+            </tr>
+            <tr>
+                <th>Abbreviation</th>
+                <td>{{ team_info.abbreviation }}</td>
+            </tr>
+            <tr>
+                <th>Nickname</th>
+                <td>{{ team_info.nickname }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ team_info.city }}</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>{{ team_info.state }}</td>
+            </tr>
+            <tr>
+                <th>Year Founded</th>
+                <td>{{ team_info.year_founded }}</td>
+            </tr>
+        </table>
+    </div>
+</main>
+{% endblock %} 

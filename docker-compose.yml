@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    container_name: flask-app-container
+    command: python ./src/main.py
+    ports:
+      - 80:5000
+    volumes:
+      - .:/code
