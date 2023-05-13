@@ -37,30 +37,32 @@
             </tr>
         </table>
     </div>
-    <div id="team-roster"> 
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Number</th>
-                <th>Postition</th>
-                <th>Height</th>
-                <th>Weight</th>
-                <th>Birth</th>
-                <th>School</th>
-                <th>Acquired</th>
-            </tr>
-            {% for index, player in team_ros.iterrows() %}
-            <tr>
-                <td><a href="/player/{{player['PLAYER_ID']}}">{{ player["PLAYER"] }}</a></td>
-                <td>{{ player["NUM"] }}</td>
-                <td>{{ player["POSITION"] }}</td>
-                <td>{{ player["HEIGHT"] }}</td>
-                <td>{{ player["WEIGHT"] }}</td>
-                <td>{{ player["BIRTH_DATE"] }}</td>
-                <td>{{ player["SCHOOL"] }}</td>
-                <td>{{ player["HOW_ACQUIRED"] }}</td>
-            {% endfor %}
-        </table>
+    <div class="sortable">
+        <div id="team-roster"> 
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Number</th>
+                    <th>Postition</th>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>Birth</th>
+                    <th>School</th>
+                    <th>Acquired</th>
+                </tr>
+                {% for index, player in team_ros.iterrows() %}
+                <tr>
+                    <td><a href="/player/{{player['PLAYER_ID']}}">{{ player["PLAYER"] }}</a></td>
+                    <td>{{ player["NUM"] }}</td>
+                    <td>{{ player["POSITION"] }}</td>
+                    <td>{{ player["HEIGHT"] }}</td>
+                    <td>{{ player["WEIGHT"] }}</td>
+                    <td>{{ player["BIRTH_DATE"] }}</td>
+                    <td>{{ player["SCHOOL"] }}</td>
+                    <td>{{ player["HOW_ACQUIRED"] }}</td>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 </main>
 {% endblock %} 

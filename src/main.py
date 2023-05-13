@@ -32,6 +32,8 @@ def player_search():
             return redirect("/player/" + player_id)
         except:
             return render_template("player_search.html", players=player_names, player_not_found=True)
+    else:
+        return render_template("player_search.html", players=player_names, player_not_found=False)
 
     
 

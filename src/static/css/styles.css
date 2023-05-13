@@ -225,3 +225,7 @@ background-color: #1c2c91;
   width: 100%;
   box-sizing: border-box;
 }
+
+th.selected {
+  background-color: rgb(186, 183, 183) !important; /* Or whatever darker color you want */
+}

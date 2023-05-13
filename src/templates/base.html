@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.sortable th').each(function() {
+                var clickCount = 0;
+                var originalOrder = $(this).parents('table').eq(0).find('tr:gt(0)').toArray();
+
+                $(this).click(function() {
+                    clickCount++;
+                    if (clickCount === 3) {
+                        // On third click, restore original order and reset click count
+                        for (var i = 0; i < originalOrder.length; i++) {
+                            $(this).parents('table').eq(0).append(originalOrder[i]);
+                        }
+                        clickCount = 0;
+                        $(this).removeClass('selected');
+                    } else {
+                        var table = $(this).parents('table').eq(0)
+                        var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
+                        this.asc = !this.asc
+                        if (!this.asc) { rows = rows.reverse() }
+                        for (var i = 0; i < rows.length; i++) { table.append(rows[i]) }
+
+                        // Remove the 'selected' class from all headers
+                        $('.sortable th').removeClass('selected');
+
+                        // Add the 'selected' class to the clicked header
+                        $(this).addClass('selected');
+                    }
+                });
+            });
+
+            function comparer(index) {
+                return function(a, b) {
+                    var valA = getCellValue(a, index), valB = getCellValue(b, index)
+                    return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+                }
+            }
+
+            function getCellValue(row, index) { return $(row).children('td').eq(index).text() }
+        });
+    </script>
     {% block head %}{% endblock %} 
 </head>
 <body>
