@@ -167,6 +167,9 @@ text-align: left;
 /* Style the home button */
 .home-button {
 display: inline-block;
+position: absolute;
+top: 20px;
+left: 20px;
 background-color: #303f9f;
 color: white;
 padding: 0.5rem 1rem;
@@ -175,9 +178,6 @@ border-radius: 5px;
 font-size: 1em;
 cursor: pointer;
 text-decoration: none;
-position: fixed;
-top: 10px;
-left: 10px;
 transition: background-color 0.3s ease;
 }
 
@@ -189,4 +189,39 @@ background-color: #1c2c91;
   max-height: 180px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+#season-overall table {
+  border-collapse: collapse;
+  max-width: 250px;
+  width: 100%;
+  margin: 2rem auto;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+#player-season {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  box-sizing: border-box;
+  overflow: hidden; /* to prevent the page itself from scrolling */
+}
+
+#player-season th {
+  position: sticky;
+  top: 0;
+  background-color: #f2f2f2; /* or whatever color you want for the header */
+  z-index: 2;
+}
+
+#player-season .table-wrapper {
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#player-season table {
+  width: 100%;
+  box-sizing: border-box;
 }

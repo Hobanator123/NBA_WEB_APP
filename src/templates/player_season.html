@@ -1,0 +1,73 @@
+{%extends 'base.html'%}
+
+{% block head %}
+<title>Player Season</title>
+{% endblock %} 
+
+{% block body %}
+<header>
+    <h1 style="text-align: center;">{{player_name}}'s {{season}} Season</h1>
+</header>
+<main>
+    <div id="season-overall">
+        <table>
+            <tr>
+                <th>Points</th>
+                <td>{{ player_avg["PTS"] }}</td>
+            </tr>
+            <tr>
+                <th>Rebounds</th>
+                <td>{{ player_avg["REB"] }}</td>
+            </tr>
+            <tr>
+                <th>Assists</th>
+                <td>{{ player_avg["AST"] }}</td>
+            </tr>
+            <tr>
+                <th>Steals</th>
+                <td>{{ player_avg["STL"] }}</td>
+            </tr>
+            <tr>
+                <th>Blocks</th>
+                <td>{{ player_avg["BLK"] }}</td>
+            </tr>
+            <tr>
+                <th>Turnovers</th>
+                <td>{{ player_avg["TOV"] }}</td>
+            </tr>
+            <tr>
+                <th>Minutes</th>
+                <td>{{ player_avg["MIN"] }}</td>
+            </tr>
+        </table>
+    </div>
+    <div id="player-season">
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Points</th>
+                    <th>Rebounds</th>
+                    <th>Assists</th>
+                    <th>Steals</th>
+                    <th>Blocks</th>
+                    <th>Turnovers</th>
+                    <th>Minutes</th>
+                </tr>
+                {% for index, row in player_games.iterrows() %}
+                    <tr>
+                        <td>{{ row["GAME_DATE"] }}</td>
+                        <td>{{ row["PTS"] }}</td>
+                        <td>{{ row["REB"] }}</td>
+                        <td>{{ row["AST"] }}</td>
+                        <td>{{ row["STL"] }}</td>
+                        <td>{{ row["BLK"] }}</td>
+                        <td>{{ row["TOV"] }}</td>
+                        <td>{{ row["MIN"] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</main>
+{% endblock %} 

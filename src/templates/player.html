@@ -13,20 +13,26 @@
         <table>
             <tr>
                 <th>Season</th>
+                <th>Team</th>
                 <th>Points</th>
                 <th>Rebounds</th>
                 <th>Assists</th>
                 <th>Steals</th>
                 <th>Blocks</th>
+                <th>Turnovers</th>
+                <th>Minutes</th>
             </tr>
             {% for index, row in player_info.iterrows() %}
                 <tr>
-                    <td>{{ row["SEASON_ID"] }}</td>
+                    <td><a href="/player/{{ player_id }}/{{ row['GROUP_VALUE'] }}">{{ row["GROUP_VALUE"] }}</a></td>
+                    <td><a href="/team/{{row['TEAM_ID']}}">{{ row["TEAM_ABBREVIATION"] }}</a></td>
                     <td>{{ row["PTS"] }}</td>
                     <td>{{ row["REB"] }}</td>
                     <td>{{ row["AST"] }}</td>
                     <td>{{ row["STL"] }}</td>
                     <td>{{ row["BLK"] }}</td>
+                    <td>{{ row["TOV"] }}</td>
+                    <td>{{ row["MIN"] }}</td>
                 </tr>
             {% endfor %}
         </table>

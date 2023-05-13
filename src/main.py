@@ -1,7 +1,7 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, request, redirect
 from nba_api.stats.static import players, teams
-from nba_api.stats.endpoints import playercareerstats
 import json
+from nba_requests import get_team_roster, get_player_averages, get_player_season
 
 
 app = Flask(__name__)
@@ -11,16 +11,6 @@ player_names = [player["full_name"] for player in all_players]
 all_teams = teams.get_teams()
 team_names = [team["full_name"] for team in all_teams]
 
-headers = {
-    'Host': 'stats.nba.com',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
-    'x-nba-stats-origin': 'stats',
-    'Accept': 'application/json, text/plain, */*',
-    'Accept-Language': 'en-US,en;q=0.5',
-    'Referer': 'https://stats.nba.com/',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Connection': 'keep-alive',
-}
 
 @app.route("/")
 def home():
@@ -50,11 +40,19 @@ def player_search():
 def player(player_id):
     player_name = [p for p in all_players if p['id'] == int(player_id)][0]['full_name']
     try:
-        career = playercareerstats.PlayerCareerStats(player_id=player_id, headers=headers, timeout=10)
-        player_info = career.get_data_frames()[0]
-        return render_template("player.html", player_name=player_name, player_info=player_info)
+        player_career_averages = get_player_averages(player_name, player_id).sort_values(by=["GROUP_VALUE"], ascending=False)
     except json.decoder.JSONDecodeError:
         return render_template("player_search.html", players=player_names, player_not_found=True)
+    
+    return render_template("player.html", player_id=player_id, player_name=player_name, player_info=player_career_averages)
+
+
+@app.route("/player/<player_id>/<season_id>")
+def player_season(player_id, season_id):
+    player_name = [p for p in all_players if p['id'] == int(player_id)][0]['full_name']
+    player_games = get_player_season(player_name, player_id, season_id)
+    player_season_overall = player_games[["PTS", "REB", "AST", "STL", "BLK", "TOV", "MIN"]].mean().round(2)
+    return render_template("player_season.html", player_name=player_name, player_games=player_games, player_avg=player_season_overall, season=season_id)
 
 
 @app.route("/team/list", methods=["POST", "GET"])
@@ -80,12 +78,15 @@ def team_search():
 
     return render_template("team_search.html", teams=team_names, team_not_found=team_not_found)            
 
-    
+
 @app.route("/team/<team_id>")
 def team(team_id):
     team_info = [t for t in all_teams if t['id'] == int(team_id)][0]
-    
-    return render_template("team.html", team_info=team_info)
+
+    team_roster_df = get_team_roster(team_id)
+
+    return render_template("team.html", team_info=team_info, team_ros=team_roster_df)
+
     
 
 if __name__ == "__main__":
