@@ -7,6 +7,7 @@ import pandas as pd
 
 app = Flask(__name__)
 
+# Retrieve all NBA players and teams using the `nba_api` module
 all_players = players.get_players()
 player_names = [player["full_name"] for player in all_players]
 all_teams = teams.get_teams()
@@ -18,6 +19,8 @@ def home():
     return render_template("home.html")
 
 
+# Define the route for searching players. If a POST request is made to this route, it attempts to find the player 
+# If the player is found, it redirects to the player's page; if not, it renders the player_search.html template with an error message
 @app.route("/player/search", methods=["POST", "GET"])
 def player_search():
     if request.method == "POST":
@@ -36,8 +39,8 @@ def player_search():
         return render_template("player_search.html", players=player_names, player_not_found=False)
 
     
-
-    
+# Define a route for individual players based on their ID. This route fetches the player's career averages 
+# and renders them on the player.html template
 @app.route("/player/<player_id>")
 def player(player_id):
     player_name = [p for p in all_players if p['id'] == int(player_id)][0]['full_name']
@@ -52,6 +55,8 @@ def player(player_id):
     return render_template("player.html", player_id=player_id, player_name=player_name, player_info=player_career_averages)
 
 
+# Define a route for displaying the stats of a player for a specific season.
+# This route fetches the player's stats for the given season and renders them on the player_season.html template
 @app.route("/player/<player_id>/<season_id>")
 def player_season(player_id, season_id):
     player_name = [p for p in all_players if p['id'] == int(player_id)][0]['full_name']
@@ -64,11 +69,15 @@ def player_season(player_id, season_id):
     return render_template("player_season.html", player_name=player_name, player_games=player_games, player_avg=player_season_overall, season=season_id)
 
 
+# Define a route for displaying a list of all NBA teams. This route renders the team_list.html template 
+# with a list of all teams
 @app.route("/team/list", methods=["POST", "GET"])
 def team_list():
     return render_template("team_list.html", all_teams=all_teams)
 
 
+# Define a route for searching teams. If a POST request is made to this route, it attempts to find the team 
+# If the team is found, it redirects to the team's page; if not, it renders the team_search.html template with an error message
 @app.route("/team/search", methods=["POST", "GET"])
 def team_search():
     team_not_found = False
@@ -88,6 +97,8 @@ def team_search():
     return render_template("team_search.html", teams=team_names, team_not_found=team_not_found)            
 
 
+# Define a route for individual teams based on their ID. This route fetches the team's roster 
+# and renders it on the team.html template
 @app.route("/team/<team_id>")
 def team(team_id):
     team_info = [t for t in all_teams if t['id'] == int(team_id)][0]

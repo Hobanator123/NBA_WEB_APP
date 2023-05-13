@@ -3,6 +3,7 @@ from datetime import datetime
 import pandas as pd
 import json
 
+# Headers needed for the NBA stats website
 headers = {
     'Host': 'stats.nba.com',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
@@ -17,12 +18,13 @@ headers = {
     'x-nba-stats-token': 'true'
 }
 
-
+# Base URL for NBA stats API
 base_url = "https://stats.nba.com/stats"
 
-
+# Current season for NBA (This would need to be updated every new season)
 CURR_SEASON = str(datetime.now().year) + "-" + str(datetime.now().year + 1)[2:]
 
+# Send request to given URL with retries in case of timeout
 def send_request(url):
     response = False
     for _ in range(2):
@@ -35,6 +37,7 @@ def send_request(url):
 
     return response
 
+# Get team roster for given team ID
 def get_team_roster(team_id):
     print(f"Parsing roster for team_id: {team_id}")
     url = f"{base_url}/commonteamroster?LeagueID=00&Season=2022-23&TeamID={team_id}"
@@ -48,6 +51,7 @@ def get_team_roster(team_id):
     
     return False
 
+# Get player averages for given player name and player ID
 def get_player_averages(player_name, player_id):
     print(f"Processing player: {player_name}")
     url = f"{base_url}/playerdashboardbyyearoveryearcombined?DateFrom=&DateTo=&GameSegment=&LastNGames=0&LeagueID=00&Location=&MeasureType=Base&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerID={player_id}&PlusMinus=N&Rank=N&Season={CURR_SEASON}&SeasonSegment=&SeasonType=Regular%20Season&ShotClockRange=&VsConference=&VsDivision="
@@ -68,6 +72,7 @@ def get_player_averages(player_name, player_id):
     
     return False
 
+# Get season stats for given player name, player ID and season ID
 def get_player_season(player_name, player_id, season_id):
     print(f"Parsing player: {player_name} for season: {season_id}")
     url = f"{base_url}/playergamelog?DateFrom=&DateTo=&LeagueID=00&PlayerID={player_id}&Season={season_id}&SeasonType=Regular%20Season"
