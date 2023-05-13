@@ -24,7 +24,7 @@ p {
 
 /* Style the header */
 header {
-  background-color: #3f51b5;
+  background-color: #24a19c;
   color: white;
   padding: 20px;
 }
@@ -60,7 +60,7 @@ input[type="text"] {
 }
 
 input[type="submit"] {
-  background-color: #3f51b5;
+  background-color: #24a19c;
   color: white;
   padding: 10px;
   border: none;
@@ -72,7 +72,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #303f9f;
+  background-color: #1b7f79;
 }
 
 /* Style the player information table */
@@ -109,80 +109,80 @@ table th {
 
 /* Style the button container */
 .button-container {
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-gap: 2rem;
-margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem 0;
 }
 
 /* Style the search buttons */
 .search-button {
-display: inline-block;
-background-color: #3f51b5;
-color: white;
-padding: 1rem 2rem;
-border: none;
-border-radius: 5px;
-font-size: 1.1em;
-cursor: pointer;
-text-decoration: none;
-transition: background-color 0.3s ease;
+  display: inline-block;
+  background-color: #24a19c;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .search-button:hover {
-background-color: #303f9f;
+  background-color: #1b7f79;
 }
 
 /* Style the team information table */
 .vertical table {
-border-collapse: collapse;
-max-width: 500px;
-width: 100%;
-margin: 2rem auto;
-background-color: #f9f9f9;
-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-collapse: collapse;
+  max-width: 500px;
+  width: 100%;
+  margin: 2rem auto;
+  background-color: #f9f9f9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .vertical th, .vertical td {
-padding: 1rem;
-text-align: left;
-vertical-align: top;
-border: 1px solid #ccc;
+  padding: 1rem;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid #ccc;
 }
 
 .vertical th {
-background-color: #3f51b5;
-color: white;
-font-weight: bold;
-text-align: right;
-width: 40%;
+  background-color: #24a19c;
+  color: white;
+  font-weight: bold;
+  text-align: right;
+  width: 40%;
 }
 
 .vertical td {
-text-align: left;
+  text-align: left;
 }
 
 /* Style the home button */
 .home-button {
-display: inline-block;
-position: absolute;
-top: 20px;
-left: 20px;
-background-color: #303f9f;
-color: white;
-padding: 0.5rem 1rem;
-border: none;
-border-radius: 5px;
-font-size: 1em;
-cursor: pointer;
-text-decoration: none;
-transition: background-color 0.3s ease;
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #1b7f79;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .home-button:hover {
-background-color: #1c2c91;
+  background-color: #156d68;
 }
 
 .ui-autocomplete {
@@ -202,7 +202,7 @@ background-color: #1c2c91;
 #player-season th {
   position: sticky;
   top: 0;
-  background-color: #f2f2f2; /* or whatever color you want for the header */
+  background-color: #f2f2f2;
   z-index: 2;
 }
 
@@ -218,5 +218,5 @@ background-color: #1c2c91;
 }
 
 th.selected {
-  background-color: rgb(186, 183, 183) !important; /* Or whatever darker color you want */
+  background-color: rgb(186, 183, 183) !important;
 }
