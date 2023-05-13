@@ -136,7 +136,7 @@ background-color: #303f9f;
 }
 
 /* Style the team information table */
-#team-info table {
+.vertical table {
 border-collapse: collapse;
 max-width: 500px;
 width: 100%;
@@ -145,14 +145,14 @@ background-color: #f9f9f9;
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-#team-info th, #team-info td {
+.vertical th, .vertical td {
 padding: 1rem;
 text-align: left;
 vertical-align: top;
 border: 1px solid #ccc;
 }
 
-#team-info th {
+.vertical th {
 background-color: #3f51b5;
 color: white;
 font-weight: bold;
@@ -160,7 +160,7 @@ text-align: right;
 width: 40%;
 }
 
-#team-info td {
+.vertical td {
 text-align: left;
 }
 
@@ -190,15 +190,6 @@ background-color: #1c2c91;
   overflow-y: auto;
   overflow-x: hidden;
 }
-
-#season-overall table {
-  border-collapse: collapse;
-  max-width: 250px;
-  width: 100%;
-  margin: 2rem auto;
-  background-color: #f9f9f9;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  }
 
 #player-season {
   display: flex;
