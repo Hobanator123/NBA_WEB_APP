@@ -1,0 +1,19 @@
+{% block head %}
+<title>Timeout</title>
+<style>
+    .timeout-message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        font-size: 2em;
+    }
+</style>
+{% endblock %} 
+
+{% block body %}
+<div class="timeout-message">
+    App Timed Out. Please <a href="/"> return to the home screen</a>.
+</div>
+{% endblock %}

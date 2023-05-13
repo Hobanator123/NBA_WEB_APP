@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from nba_api.stats.static import players, teams
 from nba_requests import get_team_roster, get_player_averages, get_player_season
 import json
+import pandas as pd
 
 
 app = Flask(__name__)
@@ -39,10 +40,13 @@ def player_search():
 def player(player_id):
     player_name = [p for p in all_players if p['id'] == int(player_id)][0]['full_name']
     try:
-        player_career_averages = get_player_averages(player_name, player_id).sort_values(by=["GROUP_VALUE"], ascending=False)
+        player_career_averages = get_player_averages(player_name, player_id)
     except json.decoder.JSONDecodeError:
         return render_template("player_search.html", players=player_names, player_not_found=True)
     
+    if not isinstance(player_career_averages, pd.DataFrame):
+        return render_template("timeout.html")
+
     return render_template("player.html", player_id=player_id, player_name=player_name, player_info=player_career_averages)
 
 
@@ -50,6 +54,10 @@ def player(player_id):
 def player_season(player_id, season_id):
     player_name = [p for p in all_players if p['id'] == int(player_id)][0]['full_name']
     player_games = get_player_season(player_name, player_id, season_id)
+
+    if not isinstance(player_games, pd.DataFrame):
+        return render_template("timeout.html")
+    
     player_season_overall = player_games[["PTS", "REB", "AST", "STL", "BLK", "TOV", "MIN"]].mean().round(2)
     return render_template("player_season.html", player_name=player_name, player_games=player_games, player_avg=player_season_overall, season=season_id)
 
@@ -84,6 +92,9 @@ def team(team_id):
 
     team_roster_df = get_team_roster(team_id)
 
+    if not isinstance(team_roster_df, pd.DataFrame):
+        return render_template("timeout.html")
+    
     return render_template("team.html", team_info=team_info, team_ros=team_roster_df)
 
     
