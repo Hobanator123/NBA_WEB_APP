@@ -5,12 +5,14 @@ import json
 
 headers = {
     'Host': 'stats.nba.com',
-#    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
     'Accept': 'application/json, text/plain, */*',
     'Accept-Language': 'en-US,en;q=0.5',
     'Referer': 'https://stats.nba.com/',
     'Accept-Encoding': 'gzip, deflate, br',
+    'DNT': '1',
     'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
     'x-nba-stats-origin': 'stats',
     'x-nba-stats-token': 'true'
 }
@@ -38,7 +40,7 @@ def get_player_averages(player_name, player_id):
         response = requests.get(url, headers=headers, timeout=10)
     except requests.exceptions.ReadTimeout:
         print("exception caught, trying again...")
-        response = requests.get(url, headers=headers, timeout=10)
+    response = requests.get(url, headers=headers, timeout=10)
     results = json.loads(response.content)['resultSets']
     yearly_averages = [result for result in results if result["name"] == "ByYearBasePlayerDashboard"][0]
     columns = yearly_averages["headers"]
@@ -47,6 +49,9 @@ def get_player_averages(player_name, player_id):
     yearly_averages_df = pd.DataFrame(data, columns=columns)
     yearly_averages_df["PLAYER_NAME"] = player_name
     yearly_averages_df["PLAYER_ID"] = str(player_id)
+
+    # If a player plays for multiple teams in a a season, an extra TOTAL row is added
+    yearly_averages_df = yearly_averages_df.loc[yearly_averages_df["TEAM_ID"] != -1]
 
     return yearly_averages_df.fillna(0.00).round(2)
 

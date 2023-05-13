@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from nba_api.stats.static import players, teams
-import json
 from nba_requests import get_team_roster, get_player_averages, get_player_season
+import json
 
 
 app = Flask(__name__)
@@ -19,7 +19,6 @@ def home():
 
 @app.route("/player/search", methods=["POST", "GET"])
 def player_search():
-    player_not_found = False
     if request.method == "POST":
         player_name = request.form["player-name"]
 
@@ -31,9 +30,9 @@ def player_search():
             player_id = str(player['id'])
             return redirect("/player/" + player_id)
         except:
-            player_not_found = True
+            return render_template("player_search.html", players=player_names, player_not_found=True)
 
-    return render_template("player_search.html", players=player_names, player_not_found=player_not_found)
+    
 
     
 @app.route("/player/<player_id>")
