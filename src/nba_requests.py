@@ -21,7 +21,7 @@ headers = {
 # Base URL for NBA stats API
 base_url = "https://stats.nba.com/stats"
 
-# Current season for NBA (This would need to be updated every new season)
+# Current season for NBA
 CURR_SEASON = str(datetime.now().year) + "-" + str(datetime.now().year + 1)[2:]
 
 # Send request to given URL with retries in case of timeout
